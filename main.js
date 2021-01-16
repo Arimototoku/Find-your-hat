@@ -120,6 +120,7 @@ myField.placeTheHat();
 myField.field[0][0] = pathCharacter;
 console.log("Hi, there. Let's find your hat. Enter U,D,L,R to move.");
 while (true) {
+  console.clear();
   myField.print();
   const step = prompt("Which way?");
   myField.move(step);
