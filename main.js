@@ -6,10 +6,10 @@ const fieldCharacter = "░";
 const pathCharacter = "*";
 
 class Field {
-  constructor(field) {
-    this._field = field;
+  constructor(dimensionX, dimensionY) {
+    this._field = [];
     this._coordinates = [0, 0];
-    this._dimensions = [3, 3];
+    this._dimensions = [dimensionX, dimensionY];
   }
   set field(updateField) {
     this._field = updateField;
@@ -91,14 +91,28 @@ class Field {
   checkFoundAHat() {
     return this._field[this._coordinates[0]][this._coordinates[1]] === hat;
   }
+  generateField() {
+    let row = [];
+    for (let i = 0; i < this.dimensions[0]; i++) {
+      for (let k = 0; k < this.dimensions[1]; k++) {
+        let random = Math.floor(Math.random() * 100);
+        if (random < 10) {
+          row.push(hole);
+        } else {
+          row.push(fieldCharacter);
+        }
+      }
+      this.field.push(row);
+      row = [];
+    }
+  }
 }
 
-const myField = new Field([
-  ["*", "░", "O"],
-  ["░", "O", "░"],
-  ["░", "^", "░"],
-]);
-console.log("Hi, there. Let's fins your hat. Enter U,D,L,R to move.");
+const myField = new Field(10, 10);
+
+myField.generateField();
+
+console.log("Hi, there. Let's find your hat. Enter U,D,L,R to move.");
 while (true) {
   myField.print();
   const step = prompt("Which way?");

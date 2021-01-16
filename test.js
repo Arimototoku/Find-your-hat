@@ -5,6 +5,9 @@ const array = [
 ];
 
 array[1][0] = "a";
+const array2 = [7, 8];
+
+array.push(array2);
 
 console.log(array.join(" - "));
 
