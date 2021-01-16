@@ -91,6 +91,12 @@ class Field {
   checkFoundAHat() {
     return this._field[this._coordinates[0]][this._coordinates[1]] === hat;
   }
+  placeTheHat() {
+    const randomX = Math.floor(Math.random() * this.dimensions[0]);
+    const randomY = Math.floor(Math.random() * this.dimensions[1]);
+    this.field[randomX][randomY] = hat;
+  }
+  
   generateField() {
     let row = [];
     for (let i = 0; i < this.dimensions[0]; i++) {
@@ -108,10 +114,10 @@ class Field {
   }
 }
 
-const myField = new Field(10, 10);
-
+const myField = new Field(20, 50);
 myField.generateField();
-
+myField.placeTheHat();
+myField.field[0][0] = pathCharacter;
 console.log("Hi, there. Let's find your hat. Enter U,D,L,R to move.");
 while (true) {
   myField.print();
@@ -129,10 +135,4 @@ while (true) {
     console.log("Congratulations! You found a hat! You are a winner!");
     return;
   }
-  //   if (myField.checkFallDownAHole()) {
-  //     console.log("You fell down a hole! Game over!");
-  //     return;
-  //   }
-  //   console.log(myField.coordinates.join("*"));
-  //   myField.print();
 }
