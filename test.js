@@ -7,3 +7,5 @@ const array = [
 array[1][0] = "a";
 
 console.log(array.join(" - "));
+
+console.log();
